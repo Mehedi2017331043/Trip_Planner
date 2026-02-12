@@ -1,2 +1,2 @@
 # Trip_Planner
-In this project, I try to Langchain based trip planner.
+In this project, I building Langchain based trip planner.
