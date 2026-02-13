@@ -5,7 +5,8 @@ import datetime
 
 import sys 
 
-BASE_URL = 'http://localhost:8000' # Backend endpoint
+# BASE_URL = 'http://localhost:8000' # Backend endpoint
+BASE_URL = 'http://127.0.0.1:8000' # Backend endpoint
 
 st.set_page_config(
     page_title='Trip Planner',
@@ -34,7 +35,6 @@ if submit_button and user_input.strip():
         # Show thinking spinner while backend processes
         with st.spinner("Bot is thinking..."):
             payload = {'question': user_input}
-            print(payload)
             response = requests.post(f'{BASE_URL}/query', json=payload)
         
         if response.status_code == 200:

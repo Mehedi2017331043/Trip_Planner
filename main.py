@@ -25,7 +25,9 @@ class QueryRequest(BaseModel):
 @app.post('/query')
 async def query_traval_agent(query: QueryRequest):
     try:
+        print('hi')
         graph=GraphBuilder(model_provider='groq')
+        print(graph)
         react_app=graph()
         png_graph=react_app.get_graph().draw_mermaid_png()
         with open("my_graph.png", 'wb') as file:
