@@ -21,7 +21,7 @@ class GraphBuilder:
         self.tools.extend([
             * self.weather_tools.weather_tool_list,
             * self.place_search_tools.place_search_tool_list,
-            * self.expense_calculator_tools.expense_calculator_tool_list
+            * self.expense_calculator_tools.expense_calculator_tool_list,
             * self.currency_converter_tools.currency_converter_tool_list,
         ])
         
@@ -36,7 +36,7 @@ class GraphBuilder:
         return {'messages': [response]}
 
     def build_graph(self):
-        graph_builder = StateGraph(*MessagesState)
+        graph_builder = StateGraph(MessagesState)
         graph_builder.add_node('agent', self.agent_functin)
         graph_builder.add_node('tools', ToolNode(tools=self.tools))
         graph_builder.add_edge(START, 'agent')
