@@ -1,7 +1,11 @@
 from utils.model_loader import ModelLoader
 from prompt_library.prompt import SYSTEM_PROMPT
 from langgraph.graph import StateGraph, MessagesState, START, END 
-from langgraph.prebuilt import ToolNode, tools_condition
+from langgraph.prebuilt import ToolNode, tools_condition 
+from tools.weather_info_tool import WeatherForecastTool
+from tools.currency_conversion_tool import CurrencyConverterTool
+from tools.expense_calculator_tool import ExpenseCalculatorTool
+from tools.place_search_tool import PlaceSearchTool
 
 class GraphBuilder():
     def __inti__(self, model_provider: str = 'groq'):
@@ -9,7 +13,20 @@ class GraphBuilder():
         self.llm=ModelLoader.load_llm()
         self.tools=[]
         self.system_prompt = SYSTEM_PROMPT
+        self.weather_tools = WeatherForecastTool()
+        self.currency_converter_tools = CurrencyConverterTool()
+        self.expense_calculator_tools = ExpenseCalculatorTool()
+        self.place_search_tools = PlaceSearchTool()
+
+        self.tools.extend([
+            * self.weather_tools.weather_tool_list,
+            * self.place_search_tools.place_search_tool_list,
+            * self.expense_calculator_tools.expense_calculator_tool_list
+            * self.currency_converter_tools.currency_converter_tool_list,
+        ])
         
+        self.llm_with_tools = self.llm.bind_tools(tools=self.tools)
+        self.graph = None
 
     def agent_functin(self, state: MessagesState):
         """ Main Agent function """
