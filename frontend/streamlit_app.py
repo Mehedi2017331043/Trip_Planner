@@ -5,8 +5,11 @@ import datetime
 
 import sys 
 
-# BASE_URL = 'http://localhost:8000' # Backend endpoint
-BASE_URL = 'http://127.0.0.1:8000' # Backend endpoint
+import os
+
+# Use environment variable for backend URL, default to localhost for local development
+BASE_URL = os.getenv('BACKEND_URL', 'http://localhost:8000')
+
 
 st.set_page_config(
     page_title='Trip Planner',
