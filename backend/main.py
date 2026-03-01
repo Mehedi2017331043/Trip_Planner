@@ -22,6 +22,15 @@ app.add_middleware(
 class QueryRequest(BaseModel):
     question: str
 
+
+@app.get("/")
+def root():
+    return {"status": "ok", "message": "AI Trip API is running"}
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
 @app.post('/query')
 async def query_traval_agent(query: QueryRequest):
     try:
