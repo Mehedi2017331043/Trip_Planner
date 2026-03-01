@@ -3,7 +3,9 @@ import requests
 import datetime
 import os
 import time
+from dotenv import load_dotenv
 
+load_dotenv()
 # --- CONFIGURATION ---
 BASE_URL = os.getenv('BACKEND_URL', 'http://localhost:8000')
 
