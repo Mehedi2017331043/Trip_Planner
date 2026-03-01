@@ -3,11 +3,9 @@ import requests
 import datetime
 import os
 import time
-from dotenv import load_dotenv
 
-load_dotenv()
 # --- CONFIGURATION ---
-BASE_URL = os.getenv('BACKEND_URL', 'http://localhost:8000')
+BASE_URL = st.secrets.get('BACKEND_URL', 'http://localhost:8000')
 
 st.set_page_config(
     page_title='AI Trip Planner | Premium Experience',
