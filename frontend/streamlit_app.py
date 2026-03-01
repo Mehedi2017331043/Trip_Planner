@@ -176,6 +176,7 @@ if submit_button:
                 st.write("Analyzing destinations...")
                 
                 payload = {'question': query}
+                st.write("Calling backend URL:", f"{BASE_URL}/query")
                 response = requests.post(f'{BASE_URL}/query', json=payload)
                 
                 if response.status_code == 200:
